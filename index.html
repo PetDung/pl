@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khám phá Pháp luật Hành chính</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Neutral -->
+    <!-- Application Structure Plan: The SPA uses a single-page, vertical scrolling layout for a linear and intuitive user flow, suitable for educational content. The content is divided into two main sections corresponding to the presentation's parts. Key concepts are presented in distinct cards to improve readability. Interactive elements, such as clickable tabs for the 'Signs of Violation' and 'Types of Penalties', are used to engage the user and present complex information in manageable chunks, transforming a static presentation outline into an active learning experience. This structure was chosen over a slide-by-slide replica to create a more modern, web-native feel that encourages exploration rather than passive viewing. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Definition of Administrative Law -> Goal: Inform -> Presentation: Text in a styled card with a clear heading -> Interaction: None -> Justification: Simple definition requires clear presentation. -> Library/Method: HTML/Tailwind.
+        - Report Info: 4 Signs of an Administrative Violation -> Goal: Organize & Explain -> Presentation: Interactive tabbed component where each tab reveals the explanation for one sign. -> Interaction: Click-to-reveal -> Justification: Breaks down a complex list into digestible parts, promoting active learning. -> Library/Method: HTML/Tailwind/Vanilla JS.
+        - Report Info: Types of Penalties -> Goal: Compare/Organize -> Presentation: Tabbed interface separating 'Main Penalties' from 'Supplementary Penalties'. -> Interaction: Click to switch tabs -> Justification: Clearly distinguishes between the two categories, making comparison easy. -> Library/Method: HTML/Tailwind/Vanilla JS.
+        - All examples are highlighted in distinct blockquote-style containers for emphasis. No quantitative data is present, so no charts (Chart.js/Plotly) are needed or used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #333;
+        }
+        .example-box {
+            background-color: #eef2ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .interactive-tab {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .interactive-tab-active {
+            background-color: #4f46e5 !important;
+            color: white !important;
+            font-weight: 600;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-indigo-700">Bài 5: Pháp luật Hành chính</h1>
+            <p class="mt-4 text-lg text-gray-600">Một trang tương tác giúp bạn khám phá các khái niệm cốt lõi.</p>
+        </header>
+
+        <main>
+            <section id="part1" class="mb-16">
+                <h2 class="text-3xl font-bold mb-2 text-gray-800">Phần 1: Những vấn đề chung</h2>
+                <p class="text-gray-600 mb-8">Phần này giới thiệu các khái niệm nền tảng: Luật Hành chính là gì, điều chỉnh những mối quan hệ nào trong xã hội và hoạt động dựa trên phương pháp đặc trưng nào. Việc hiểu rõ những điều này là chìa khóa để nắm bắt bản chất của quản lý nhà nước.</p>
+
+                <div class="space-y-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-shadow hover:shadow-xl">
+                        <h3 class="text-2xl font-semibold mb-3 text-indigo-600">1.1. Khái niệm Luật Hành chính</h3>
+                        <p class="mb-4">Luật Hành chính là ngành luật điều chỉnh các quan hệ xã hội phát sinh trong quá trình <strong>quản lý hành chính nhà nước</strong>.</p>
+                        <p class="text-gray-700">Đây là các quy tắc mà nhà nước đặt ra để các cơ quan (như Chính phủ, UBND, Công an...) thực hiện chức năng quản lý, và cách người dân, tổ chức tương tác với các cơ quan đó.</p>
+                        <div class="example-box">
+                            <p class="font-semibold">Ví dụ tình huống:</p>
+                            <p class="text-gray-800">Khi bạn đến cơ quan Công an phường để làm thủ tục cấp Căn cước công dân, toàn bộ quy trình, giấy tờ bạn cần nộp, thời gian chờ đợi... đều được quy định bởi các văn bản pháp luật hành chính. Mối quan hệ giữa bạn và cơ quan công an lúc này chính là quan hệ pháp luật hành chính.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-shadow hover:shadow-xl">
+                        <h3 class="text-2xl font-semibold mb-3 text-indigo-600">1.2. Đối tượng điều chỉnh</h3>
+                        <p class="mb-4">Luật Hành chính điều chỉnh các mối quan hệ quản lý chính sau:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Quan hệ giữa cơ quan hành chính cấp trên và cấp dưới:</strong> Mối quan hệ chỉ đạo, điều hành theo chiều dọc.</li>
+                            <li><strong>Quan hệ giữa cơ quan hành chính và các tổ chức, cá nhân:</strong> Đây là nhóm quan hệ phổ biến nhất.</li>
+                            <li><strong>Quan hệ phát sinh khi nhà nước trao quyền:</strong> Các cá nhân, tổ chức được nhà nước trao quyền thực hiện một số hoạt động quản lý.</li>
+                        </ul>
+                        <div class="example-box">
+                            <p class="font-semibold">Ví dụ tình huống:</p>
+                            <ul class="list-decimal list-inside text-gray-800 mt-2">
+                                <li><strong>Cấp trên - cấp dưới:</strong> UBND Tỉnh ra chỉ thị về phòng chống dịch bệnh, UBND các Huyện, Xã phải tuân thủ và triển khai thực hiện.</li>
+                                <li><strong>Cơ quan nhà nước - Cá nhân:</strong> Cảnh sát giao thông lập biên bản và ra quyết định xử phạt anh A vì hành vi vượt đèn đỏ.</li>
+                                <li><strong>Cơ quan nhà nước - Tổ chức:</strong> Cục An toàn thực phẩm thanh tra một công ty sản xuất bánh kẹo và xử phạt nếu phát hiện vi phạm.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-shadow hover:shadow-xl">
+                        <h3 class="text-2xl font-semibold mb-3 text-indigo-600">1.3. Phương pháp điều chỉnh</h3>
+                        <p class="mb-2"><strong>Đặc trưng:</strong> Phương pháp <strong>Mệnh lệnh - Đơn phương</strong>.</p>
+                        <p class="text-gray-700 mb-4">Phương pháp này xuất phát từ quan hệ "quyền uy - phục tùng", trong đó một bên (cơ quan nhà nước) có quyền ra quyết định bắt buộc và bên còn lại (tổ chức, cá nhân) có nghĩa vụ phải chấp hành. Điều này khác biệt hoàn toàn với phương pháp bình đẳng, thỏa thuận của Luật Dân sự.</p>
+                        <div class="example-box">
+                             <p class="font-semibold">Ví dụ so sánh:</p>
+                             <p class="text-gray-800">Khi bạn đi mua điện thoại (quan hệ dân sự), bạn có thể thỏa thuận, mặc cả về giá. Nhưng khi Thanh tra Xây dựng ra quyết định đình chỉ công trình xây dựng trái phép của bạn (quan hệ hành chính), bạn <strong>bắt buộc phải tuân thủ</strong>. Bạn có quyền khiếu nại sau, nhưng trước hết phải chấp hành.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="part2">
+                <h2 class="text-3xl font-bold mb-2 text-gray-800">Phần 2: Vi phạm và Xử lý Vi phạm Hành chính</h2>
+                <p class="text-gray-600 mb-8">Sau khi hiểu về cách thức hoạt động của Luật Hành chính, phần này sẽ đi sâu vào các trường hợp khi quy tắc bị phá vỡ. Chúng ta sẽ tìm hiểu thế nào là một vi phạm hành chính thông qua các dấu hiệu cụ thể và các hình thức xử lý của nhà nước.</p>
+
+                 <div class="space-y-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-shadow hover:shadow-xl">
+                        <h3 class="text-2xl font-semibold mb-3 text-indigo-600">2.1. Vi phạm Hành chính</h3>
+                        <p class="mb-4">Là hành vi <strong>có lỗi</strong> do cá nhân, tổ chức thực hiện, vi phạm các quy định của pháp luật về quản lý nhà nước mà mức độ nguy hiểm <strong>chưa đến mức bị coi là tội phạm</strong> và phải bị xử phạt vi phạm hành chính.</p>
+                         <div class="example-box">
+                            <p class="font-semibold">Ví dụ thường gặp:</p>
+                            <p class="text-gray-800">Các hành vi như: không đội mũ bảo hiểm, vứt rác không đúng nơi quy định, hát karaoke quá giờ gây ồn ào... đều là vi phạm hành chính. Chúng vi phạm quy định quản lý của nhà nước nhưng mức độ nguy hiểm không cao như tội trộm cắp, cướp giật.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-shadow hover:shadow-xl">
+                        <h3 class="text-2xl font-semibold mb-3 text-indigo-600">2.1.2. Các dấu hiệu của Vi phạm Hành chính</h3>
+                        <p class="mb-4">Một hành vi bị coi là vi phạm hành chính khi có đủ 4 dấu hiệu. Hãy nhấp vào từng dấu hiệu để xem giải thích chi tiết.</p>
+                        <div class="flex flex-wrap gap-2 mb-4" id="signs-tabs">
+                            <button data-target="sign-1" class="interactive-tab interactive-tab-active px-4 py-2 bg-indigo-100 text-indigo-700 rounded-md">1. Tính trái pháp luật</button>
+                            <button data-target="sign-2" class="interactive-tab px-4 py-2 bg-indigo-100 text-indigo-700 rounded-md">2. Hành vi khách quan</button>
+                            <button data-target="sign-3" class="interactive-tab px-4 py-2 bg-indigo-100 text-indigo-700 rounded-md">3. Chủ thể thực hiện</button>
+                            <button data-target="sign-4" class="interactive-tab px-4 py-2 bg-indigo-100 text-indigo-700 rounded-md">4. Tính có lỗi</button>
+                        </div>
+                        <div id="signs-content" class="p-4 bg-gray-50 rounded-md">
+                            <div id="sign-1" class="tab-content active">
+                                <p><strong>Tính trái pháp luật:</strong> Hành vi đó vi phạm một quy tắc quản lý nhà nước cụ thể được quy định trong các văn bản pháp luật.</p>
+                            </div>
+                            <div id="sign-2" class="tab-content">
+                                <p><strong>Hành vi khách quan:</strong> Phải được thể hiện ra bên ngoài bằng hành động (làm) hoặc không hành động (không làm điều mà pháp luật yêu cầu phải làm).</p>
+                            </div>
+                             <div id="sign-3" class="tab-content">
+                                <p><strong>Do cá nhân hoặc tổ chức thực hiện:</strong> Phải có chủ thể thực hiện rõ ràng, có năng lực chịu trách nhiệm hành chính.</p>
+                            </div>
+                             <div id="sign-4" class="tab-content">
+                                <p><strong>Tính có lỗi:</strong> Chủ thể thực hiện hành vi một cách cố ý (biết là sai nhưng vẫn làm) hoặc vô ý (không thấy trước hậu quả dù phải thấy và có thể thấy).</p>
+                            </div>
+                        </div>
+                        <div class="example-box">
+                            <p class="font-semibold">Phân tích hành vi "Vượt đèn đỏ":</p>
+                            <ul class="list-decimal list-inside text-gray-800 mt-2">
+                                <li><strong>Trái pháp luật:</strong> Vi phạm Luật Giao thông đường bộ.</li>
+                                <li><strong>Hành vi khách quan:</strong> Hành động điều khiển xe đi qua khi đèn tín hiệu màu đỏ.</li>
+                                <li><strong>Chủ thể:</strong> Người lái xe.</li>
+                                <li><strong>Lỗi:</strong> Cố ý (cố tình vượt) hoặc vô ý (không chú ý).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-shadow hover:shadow-xl">
+                        <h3 class="text-2xl font-semibold mb-3 text-indigo-600">2.2. Xử lý Vi phạm Hành chính</h3>
+                        <p class="mb-4">Là việc người có thẩm quyền áp dụng các hình thức xử phạt và biện pháp khắc phục hậu quả. Việc xử phạt phải tuân theo các nguyên tắc nghiêm ngặt như: công khai, khách quan, đúng thẩm quyền và một hành vi chỉ bị xử phạt một lần.</p>
+                        
+                        <div class="flex border-b border-gray-200 mb-4" id="penalties-tabs">
+                            <button data-target="penalty-main" class="interactive-tab interactive-tab-active flex-1 text-center py-3">Hình thức xử phạt chính</button>
+                            <button data-target="penalty-extra" class="interactive-tab flex-1 text-center py-3">Hình thức xử phạt bổ sung</button>
+                        </div>
+
+                        <div id="penalties-content">
+                            <div id="penalty-main" class="tab-content active">
+                                <p class="mb-2">Chỉ áp dụng <strong>một</strong> hình thức xử phạt chính cho một hành vi vi phạm.</p>
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li><strong>Cảnh cáo:</strong> Áp dụng cho vi phạm nhỏ, lần đầu, có tình tiết giảm nhẹ.</li>
+                                    <li><strong>Phạt tiền:</strong> Hình thức phổ biến nhất, được áp dụng rộng rãi.</li>
+                                </ul>
+                            </div>
+                             <div id="penalty-extra" class="tab-content">
+                                 <p class="mb-2">Có thể áp dụng kèm theo hình thức xử phạt chính để tăng tính răn đe.</p>
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li><strong>Tước quyền sử dụng giấy phép, chứng chỉ hành nghề:</strong> Ví dụ: tước bằng lái xe, giấy phép kinh doanh.</li>
+                                    <li><strong>Tịch thu tang vật, phương tiện vi phạm:</strong> Ví dụ: tịch thu hàng giả, xe máy dùng để đua xe trái phép.</li>
+                                    <li><strong>Trục xuất:</strong> Áp dụng đối với người nước ngoài vi phạm pháp luật Việt Nam.</li>
+                                </ul>
+                            </div>
+                        </div>
+                         <div class="example-box">
+                            <p class="font-semibold">Ví dụ tình huống:</p>
+                            <p class="text-gray-800">Anh B điều khiển xe máy sau khi uống rượu bia, nồng độ cồn vượt mức quy định. Anh B sẽ bị xử lý:</p>
+                             <ul class="list-disc list-inside text-gray-800 mt-2">
+                                <li><strong>Phạt tiền:</strong> 7 triệu đồng (Hình thức chính).</li>
+                                <li><strong>Tước quyền sử dụng Giấy phép lái xe:</strong> 23 tháng (Hình thức bổ sung).</li>
+                             </ul>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function setupTabs(tabContainerId, contentContainerId, activeClass) {
+                const tabs = document.querySelectorAll(`#${tabContainerId} button`);
+                const contents = document.querySelectorAll(`#${contentContainerId} .tab-content`);
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const targetId = tab.dataset.target;
+                        
+                        tabs.forEach(t => t.classList.remove(activeClass));
+                        tab.classList.add(activeClass);
+
+                        contents.forEach(content => {
+                            if (content.id === targetId) {
+                                content.classList.add('active');
+                            } else {
+                                content.classList.remove('active');
+                            }
+                        });
+                    });
+                });
+            }
+
+            setupTabs('signs-tabs', 'signs-content', 'interactive-tab-active');
+            setupTabs('penalties-tabs', 'penalties-content', 'interactive-tab-active');
+        });
+    </script>
+
+</body>
+</html>
